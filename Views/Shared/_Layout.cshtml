@@ -26,16 +26,22 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Начало</a>
                         </li>
                         <!-- <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li> -->
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Products" asp-action="Catalog">Catalog</a>
+                            <a class="nav-link text-dark" asp-controller="Products" asp-action="Catalog">Каталог</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">Products</a>
+                            <a class="nav-link text-dark" asp-controller="Home" asp-action="About">За нас</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Contact">Контакти</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">Продукти</a>
                         </li>
                     </ul>
                 </div>
@@ -51,11 +57,20 @@
     </div>
 
     <!-- Добавяме mt-auto за да се залепи footer-а долу -->
-    <footer class="border-top footer text-muted mt-auto">
-        <div class="container">
-            &copy; 2025 - OnlineStore - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="border-top footer bg-dark text-white mt-auto py-3">
+        <div class="container text-center">
+            <ul class="list-inline">
+                <li class="list-inline-item"><a class="text-white" asp-controller="Home" asp-action="Index">Начало</a></li>
+                <li class="list-inline-item mx-3"><a class="text-white" asp-controller="Products" asp-action="Catalog">Каталог</a></li>
+                <li class="list-inline-item"><a class="text-white" asp-controller="Home" asp-action="About">За нас</a></li>
+                <li class="list-inline-item mx-3"><a class="text-white" asp-controller="Home" asp-action="Contact">Контакти</a></li>
+            </ul>
+            <hr class="my-3 border-light">
+            <p class="mb-0">&copy; 2025 - SiM - Всички права запазени.</p>
         </div>
     </footer>
+
+
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
