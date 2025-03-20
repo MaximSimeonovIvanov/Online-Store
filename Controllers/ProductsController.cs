@@ -20,6 +20,13 @@ namespace OnlineStore.Controllers
             return View(products);
         }
 
+        public IActionResult Catalog()
+        {
+            var products = _context.Products.Include(p => p.Category).ToList();
+            return View(products);
+        }
+
+
         // GET: Products/Details/5
         public IActionResult Details(int? id)
         {
