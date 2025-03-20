@@ -20,11 +20,26 @@ namespace OnlineStore.Controllers
             return View(products);
         }
 
-        public IActionResult Catalog()
+        public IActionResult Catalog(int? categoryId, string? searchQuery)
         {
-            var products = _context.Products.Include(p => p.Category).ToList();
-            return View(products);
+            var products = _context.Products.Include(p => p.Category).AsQueryable();
+
+            if (categoryId.HasValue)
+            {
+                products = products.Where(p => p.CategoryId == categoryId.Value);
+            }
+
+            if (!string.IsNullOrEmpty(searchQuery))
+            {
+                string lowerQuery = $"%{searchQuery.ToLower()}%";
+                products = products.Where(p => EF.Functions.Like(p.Name, lowerQuery) 
+                    || EF.Functions.Like(p.Description, lowerQuery));
+            }
+
+            ViewBag.Categories = _context.Categories.ToList();
+            return View(products.ToList());
         }
+
 
 
         // GET: Products/Details/5

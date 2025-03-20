@@ -1,18 +1,44 @@
 @model IEnumerable<OnlineStore.Models.Product>
 
+@{
+    ViewData["Title"] = "Каталог";
+}
+
 <h1 class="mb-4 text-center">Каталог</h1>
 
+<!-- рърсачка -->
+<div class="d-flex justify-content-center mb-4">
+    <form method="get" class="d-flex">
+        <input type="text" name="searchQuery" class="form-control me-2" placeholder="Търсене на продукти..." value="@Context.Request.Query["searchQuery"]">
+        <button type="submit" class="btn btn-primary">Търси</button>
+    </form>
+</div>
+
+<!--филтър по категории -->
+<div class="d-flex justify-content-center mb-4">
+    <form method="get" class="d-flex">
+        <select name="categoryId" class="form-select me-2">
+            <option value="">Всички категории</option>
+            @foreach (var category in ViewBag.Categories)
+            {
+                <option value="@category.Id">@category.Name</option>
+            }
+        </select>
+        <button type="submit" class="btn btn-primary">Филтрирай</button>
+    </form>
+</div>
+
 <div class="row">
-    @foreach (var item in Model)
+    @foreach (var product in Model)
     {
         <div class="col-md-4 mb-4">
-            <div class="card shadow-sm">
-                <img src="@(!string.IsNullOrEmpty(item.ImageUrl) ? item.ImageUrl : Url.Content("~/images/default-image.jpg"))" class="card-img-top" alt="Изображение на продукта">
+            <div class="card h-100">
+                <img src="@(string.IsNullOrEmpty(product.ImageUrl) ? Url.Content("~/images/default-image.jpg") : product.ImageUrl)" class="card-img-top" alt="@product.Name">
                 <div class="card-body">
-                    <h5 class="card-title">@item.Name</h5>
-                    <p class="card-text text-muted">@item.Description</p>
-                    <p class="card-text fw-bold">@item.Price лв.</p>
-                    <span class="badge bg-secondary">@item.Category?.Name</span>
+                    <h5 class="card-title">@product.Name</h5>
+                    <p class="card-text">@product.Description</p>
+                    <p class="fw-bold">@product.Price лв.</p>
+                    <span class="badge bg-secondary">@product.Category?.Name</span>
                 </div>
             </div>
         </div>
