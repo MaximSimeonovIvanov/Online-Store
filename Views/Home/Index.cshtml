@@ -1,8 +1,21 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Добре дошли в SiM Shop";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <div class="hero-section">
+        <h1 class="display-3">Добре дошли в SiM Shop</h1>
+        <p class="lead">Разгледайте нашите най-добри продукти на страхотни цени.</p>
+        <a class="btn btn-primary btn-lg mt-3" asp-controller="Products" asp-action="Catalog">Разгледай каталога</a>
+    </div>
 </div>
+
+<style>
+    .hero-section {
+        background: url('/images/home-bg.png') no-repeat center center;
+        background-size: cover;
+        color: white;
+        padding: 100px 20px;
+        border-radius: 10px;
+    }
+</style>
