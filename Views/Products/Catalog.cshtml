@@ -32,11 +32,17 @@
     @foreach (var product in Model)
     {
         <div class="col-md-4 mb-4">
-            <div class="card h-100">
-                <img src="@(string.IsNullOrEmpty(product.ImageUrl) ? Url.Content("~/images/default-image.jpg") : product.ImageUrl)" class="card-img-top" alt="@product.Name">
+            <div class="card h-100 shadow-sm">
+                <img src="@(string.IsNullOrEmpty(product.ImageUrl) ? Url.Content("~/images/default-image.jpg") : product.ImageUrl)"
+                     class="card-img-top img-fluid"
+                     alt="@product.Name"
+                     style="height: 250px; object-fit: contain; background: #FFFFFF; padding: 10px;">
                 <div class="card-body">
                     <h5 class="card-title">@product.Name</h5>
-                    <p class="card-text">@product.Description</p>
+                    <p class="card-text text-muted"
+                       style="max-height: 60px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                        @product.Description
+                    </p>
                     <p class="fw-bold">@product.Price лв.</p>
                     <span class="badge bg-secondary">@product.Category?.Name</span>
                 </div>
