@@ -40,6 +40,12 @@
     </div>
 
     <div>
+        <label asp-for="ImageUrl">URL на изображението:</label>
+        <input asp-for="ImageUrl" class="form-control" placeholder="https://example.com/image.jpg" />
+        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+    </div>
+
+    <div>
         <button type="submit">Запази промените</button>
         <a asp-action="Index">Назад към списъка</a>
     </div>

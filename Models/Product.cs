@@ -22,5 +22,6 @@ namespace OnlineStore.Models
         public int CategoryId { get; set; } // външен ключ
         public Category? Category { get; set; } //мавигационно свойство ?-позволява null стойност
 
+        public string? ImageUrl { get; set; } // ше съдържа URL или път към изображението
     }
 }

@@ -9,7 +9,7 @@ namespace OnlineStore.Models
 
         [Required]
         [StringLength(100)]
-        public required string Name { get; set; }
+        public required string Name { get; set; } //Добавено required
 
         // Свързване на категорията с продуктите (One-to-Many)
         public List<Product> Products { get; set; } = new List<Product>();
