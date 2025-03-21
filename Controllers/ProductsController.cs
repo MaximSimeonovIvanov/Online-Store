@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using OnlineStore.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace OnlineStore.Controllers
 {
+    //[Authorize(Roles = "Admin")]
     public class ProductsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -20,6 +22,7 @@ namespace OnlineStore.Controllers
             return View(products);
         }
 
+        [AllowAnonymous]
         public IActionResult Catalog(int? categoryId, string? searchQuery)
         {
             var products = _context.Products.Include(p => p.Category).AsQueryable();
@@ -31,9 +34,8 @@ namespace OnlineStore.Controllers
 
             if (!string.IsNullOrEmpty(searchQuery))
             {
-                string lowerQuery = $"%{searchQuery.ToLower()}%";
-                products = products.Where(p => EF.Functions.Like(p.Name, lowerQuery) 
-                    || EF.Functions.Like(p.Description, lowerQuery));
+                string pattern = $"%{searchQuery}%";
+                products = products.Where(p => EF.Functions.Like(p.Name, pattern) || EF.Functions.Like(p.Description, pattern));
             }
 
             ViewBag.Categories = _context.Categories.ToList();
