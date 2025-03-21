@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace OnlineStore.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class ProductsController : Controller
     {
         private readonly ApplicationDbContext _context;
