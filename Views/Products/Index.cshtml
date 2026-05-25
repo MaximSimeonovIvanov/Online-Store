@@ -1,0 +1,40 @@
+@model IEnumerable<OnlineStore.Models.Product>
+
+<h1 class="mb-4">Продукти</h1>
+
+<a class="btn btn-primary mb-3" asp-action="Create">Добави нов продукт</a>
+
+<table class="table table-hover table-bordered text-center align-middle shadow-sm">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">Име</th>
+            <th scope="col">Описание</th>
+            <th scope="col">Цена</th>
+            <th scope="col">Категория</th>
+            <th scope="col">Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="fw-bold">@item.Name</td>
+                <td>@item.Description</td>
+                <td><span class="badge bg-success">@item.Price лв.</span></td>
+                <td><span class="badge bg-secondary">@item.Category?.Name</span></td>
+                <td>
+                    <a class="btn btn-sm btn-warning text-white me-1" asp-action="Edit" asp-route-id="@item.Id">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+                    <a class="btn btn-sm btn-info text-white me-1" asp-action="Details" asp-route-id="@item.Id">
+                        <i class="bi bi-eye"></i>
+                    </a>
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.Id">
+                        <i class="bi bi-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

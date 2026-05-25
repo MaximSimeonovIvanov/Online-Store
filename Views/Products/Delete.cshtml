@@ -1,0 +1,21 @@
+@model OnlineStore.Models.Product
+
+<h1>Изтриване на продукт</h1>
+
+<p>Сигурен ли си, че искаш да изтриеш този продукт?</p>
+
+<div>
+    <strong>Име:</strong> @Model.Name
+</div>
+<div>
+    <strong>Описание:</strong> @Model.Description
+</div>
+<div>
+    <strong>Цена:</strong> @Model.Price лв.
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit">Потвърди изтриването</button>
+    <a asp-action="Index">Отказ</a>
+</form>
